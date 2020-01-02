@@ -9,3 +9,4 @@ todos.forEach(function (todo, index) {
     const num = index + 1
     console.log(`${num}. ${todo}`)
 })
+

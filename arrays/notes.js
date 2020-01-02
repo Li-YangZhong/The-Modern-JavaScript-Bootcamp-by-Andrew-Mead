@@ -17,3 +17,4 @@ notes.forEach(function (item, index) {
 
 console.log(notes.length)
 console.log(notes)
+
