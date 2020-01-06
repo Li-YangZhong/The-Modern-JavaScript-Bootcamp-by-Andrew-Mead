@@ -1,20 +1,50 @@
-const notes = ['Note 1', 'Note 2', 'Note 3']
+const notes = [{
+    title: 'my next trip',
+    body: 'I would like to go to Spain'
+}, {
+    title: 'Habbits to work on',
+    body: 'Exercise. Eating a bit better.'
+}, {
+    title: 'Office modification',
+    body: 'Get a new seat'
+}]
 
-// console.log(notes.pop())//remove last item
-// notes.push('My new note')//add to the end
+const sortNotes = function (notes) {
+    notes.sort(function (a, b) {
+        if (a.title.toLowerCase() < b.title.toLowerCase()) {
+            return -1
+        } else if (b.title.toLowerCase() < a.title.toLowerCase) {
+            return 1
+        } else {
+            return 0
+        }
 
-// console.log(notes.shift())//remove first item
-// notes.unshift('My first note')//add to the beginning
+    })
+}
 
-// notes.splice(1, 1, 'This is the new second item')//start at index 1 and remove item(s) or add new item(s)
+const findNote = function (notes, noteTitle) {
+    return notes.find(function (note, index) {
+        // console.log(note.title)
+        return note.title.toLowerCase() === noteTitle.toLowerCase()
+    })  
+}
 
-notes[2] = 'This is now the new note 3'
+const findNotes = function (notes, query) {
+    return notes.filter(function (note, index) {
+        const isTitleMatch = note.title.toLowerCase().includes(query.toLowerCase())
+        const isBodyMatch = note.body.toLowerCase().includes(query.toLowerCase())
+        return isTitleMatch || isBodyMatch
+    })
 
-notes.forEach(function (item, index) {
-    console.log(index)
-    console.log(item)
-})
 
-console.log(notes.length)
+}
+
+
+// console.log(findNotes(notes, 'eating'))
+
+
+// const note = findNote(notes, 'some other office modification')
+// console.log(note)
+
+sortNotes(notes)
 console.log(notes)
-
