@@ -13,7 +13,7 @@ const todos = [{
 },{
     text: 'Exercise',
     completed: true
-},]
+}]
 
 const sortTodos = function (todos) {
     todos.sort(function(a, b) {
