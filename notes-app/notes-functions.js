@@ -14,21 +14,45 @@ const saveNotes = function (notes) {
     localStorage.setItem('notes', JSON.stringify(notes))
 }
 
+// Remove a note from the list
+const removeNotes = function (id) {
+    const noteIndex = notes.findIndex(function (note) {
+        return note.id === id
+    })
+
+    if (noteIndex > -1) {
+        notes.splice(noteIndex, 1)
+    }
+
+}
+
 // Generate the DOM structure for a note
 const generateNoteDOM = function (note) {
-    const noteEl = document.createElement('p')
+    const noteEl = document.createElement('div')
+    const textEl = document.createElement('span')
+    const button = document.createElement('button')
 
+    // Setup the remove note button
+    button.textContent = 'x'
+    noteEl.appendChild(button)
+
+    // Setup the note title text
     if (note.title.length > 0) {
-        noteEl.textContent = note.title
+        textEl.textContent = note.title
     } else {
-        noteEl.textContent = 'Unnamed note'
+        textEl.textContent = 'Unnamed note'
     }
+    noteEl.appendChild(textEl)
+    button.addEventListener('click', function () {
+        removeNotes(note.id)
+        saveNotes(notes)
+        renderNotes(notes, filters)
+    })
 
     return noteEl
 }
 
 //Render application notes
-
 const renderNotes = function (notes, filters) {
     const filteredNotes = notes.filter(function (note) {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
