@@ -14,13 +14,16 @@ class Person {
         this.likes.forEach((like) => {
             bio += ` ${this.firstName} likes ${like}.`
         })
-    
+
         return bio
     }
-    setName(fullName) {
+    set fullName(fullName) {
         const names = fullName.split(' ')
         this.firstName = names[0]
         this.lastName = names[1]
+    }
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`
     }
 }
 
@@ -30,11 +33,10 @@ class Employee extends Person {
         this.position = position
     }
     getBio() {
-        return `${this.firstName} ${this.lastName} is a ${this.position}.`
-        // Andrew is a teacher
+        return `${this.fullName} is a ${this.position}.`
     }
     getYearsLeft() {
-        return 65 -this.age
+        return 65 - this.age
     }
 }
 
@@ -47,12 +49,12 @@ class Student extends Person {
         this.grade += change
     }
     getBio() {
-        const status = this.grade >= 70? 'passing' : 'failing'
+        const status = this.grade >= 70 ? 'passing' : 'failing'
         return `${this.firstName} is ${status} the class.`
     }
 }
 
-const me = new Student('Andrew', 'Mead', 27, 88, [])
+const me = new Employee('Andrew', 'Mead', 27, 'Teacher', [])
+me.fullName = 'Clancey Turner'
 console.log(me.getBio())
-me.updateGrade(-20)
-console.log(me.getBio())
+
