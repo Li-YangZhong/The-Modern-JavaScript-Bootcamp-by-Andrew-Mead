@@ -1,7 +1,14 @@
+'use strict'
+
 // Read existing notes from localStorage
 const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes')
-    return notesJSON ? JSON.parse(notesJSON) : []
+
+    try {
+        return notesJSON ? JSON.parse(notesJSON) : []
+    } catch (e) {
+        return []
+    }
 }
 
 //Save the notes to localStorage
@@ -49,7 +56,6 @@ const generateNoteDOM = (note) => {
 // Sort your notes by one of three ways
 const sortNotes = (notes, sortBy) => {
     if (sortBy === 'byEdited') {
-        console.log('touched')
         return notes.sort((a, b) => {
             if (a.updatedAt > b.updatedAt) {
                 return -1
@@ -57,11 +63,11 @@ const sortNotes = (notes, sortBy) => {
                 return 1
             } else {
                 return 0
-            } 
+            }
         })
 
     } else if (sortBy === 'byCreated') {
-        return notes.sort((a,b) => {
+        return notes.sort((a, b) => {
             if (a.createdAt > b.createdAt) {
                 return -1
             } else if (a.createdAt < b.createdAt) {
@@ -70,8 +76,8 @@ const sortNotes = (notes, sortBy) => {
                 return 0
             }
         })
-    }  else if (sortBy === 'alphabetical') {
-        return notes.sort((a,b) => {
+    } else if (sortBy === 'alphabetical') {
+        return notes.sort((a, b) => {
             if (a.title.toLowerCase() < b.title.toLowerCase()) {
                 return -1
             } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
@@ -81,7 +87,7 @@ const sortNotes = (notes, sortBy) => {
             }
         })
 
-    }  else {
+    } else {
         return notes
     }
 }
@@ -89,7 +95,7 @@ const sortNotes = (notes, sortBy) => {
 //Render application notes
 const renderNotes = (notes, filters) => {
     notes = sortNotes(notes, filters.sortBy)
-    const filteredNotes = notes.filter((note) =>note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
+    const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
 
     document.querySelector('#notes').innerHTML = ''
 
