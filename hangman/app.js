@@ -24,3 +24,4 @@ getCountry('MX').then((country) => {
 }, (err) => {
     console.log(`Error: ${err}`)
 })
+
