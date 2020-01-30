@@ -3,6 +3,8 @@
 <html>
 
 <head>
+    <title>Noes App</title>
+    <link rel="icon" href="../hangman/images/favicon.ico">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
@@ -19,11 +21,12 @@
             <span id="last-edited"></span>
         </div>
     </div>
+<div class="container">
+    <input id="note-title" class="title-input" placeholder="Note title">
+    <textarea id="note-body" class="body-input" placeholder="Enter note text"></textarea>
+    <button id="remove-note" class="button button--secondary">Remove note</button>
+</div>
 
-    <input id="note-title" placeholder="Note title">
-    
-    <textarea id="note-body" placeholder="Enter note text"></textarea>
-    <button id="remove-note">Remove note</button>
     <script src="../3rd_party_js_files/moment-with-locales.min.js"></script>
     <script src="scripts/notes-functions.js"></script>
     <script src="scripts/notes-edit.js"></script>
