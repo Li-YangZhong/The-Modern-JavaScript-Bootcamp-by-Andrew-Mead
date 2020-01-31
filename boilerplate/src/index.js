@@ -1,10 +1,18 @@
-const name = 'Mike'
-console.log(name)
+const calculateAverage = (thing, ...numbers) => {
+  // return (numOne + numTwo) / 2
+  let sum = 0
+  numbers.forEach((num) => sum += num)
+  const average = sum / numbers.length
+  return `The average ${thing} is ${average}`
 
-class Hangman {
-  myMethod() {
-  	return 'Testing'
-  }
 }
-const hangman = new Hangman()
-console.log(hangman.myMethod())
+
+console.log(calculateAverage('age',0, 100, 88, 64))
+
+const printTeam = (teamName, coach, ...players) => {
+  console.log(`Team: ${teamName}`)
+  console.log(`Coach: ${coach}`)
+  console.log(`Players: ${players.join(', ')}`)
+}
+
+printTeam('Liberty', 'Casey Penn', 'Marge', 'Aiden', 'Herbert', 'Sherry')
